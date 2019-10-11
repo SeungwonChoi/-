@@ -3,21 +3,20 @@
 import math
 
 def solution(answers):
-    pattern_2 = [1, 3, 4, 5]
-    pattern_3 = [3, 1, 2, 4, 5]
-    score = [0] * 3
+    patterns = [[1, 2, 3, 4, 5],
+                [2, 1, 2, 3, 2, 4, 2, 5],
+                [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]]
+    score = [0] * len(patterns)
     answer = []
     
     for i in range(len(answers)):
         if answers[i] == (i % 5) + 1:
             score[0] = score[0] + 1
         
-        if i % 2 == 0 and answers[i] == 2:
-            score[1] = score[1] + 1
-        elif i % 2 != 0 and answers[i] == pattern_2[math.floor((i % 8) / 2)]:
+        if answers[i] == patterns[1][i % 8]:
             score[1] = score[1] + 1
             
-        if answers[i] == pattern_3[math.floor((i % 10) / 2)]:
+        if answers[i] == patterns[2][i % 10]:
             score[2] = score[2] + 1
             
     for i in range(len(score)):
