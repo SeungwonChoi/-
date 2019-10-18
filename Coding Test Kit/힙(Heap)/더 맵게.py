@@ -4,13 +4,10 @@ import heapq
 
 def solution(scoville, K):
     cnt = 0
+    heapq.heapify(scoville)
 
-    heap = []
-    for i in scoville:
-        heapq.heappush(heap, i)
-
-    while heap[0] < K and len(heap) >= 2:
-        heapq.heappush(heap, heapq.heappop(heap) + 2 * heapq.heappop(heap))
+    while scoville[0] < K and len(scoville) >= 2:
+        heapq.heappush(scoville, heapq.heappop(scoville) + 2 * heapq.heappop(scoville))
         cnt += 1
-
-    return -1 if heap[0] < K else cnt
+    
+    return -1 if scoville[0] < K else cnt
