@@ -1,8 +1,6 @@
 # https://programmers.co.kr/learn/courses/30/lessons/42895
 
-N, number = map(int, input().split())
 values_by_used_cnt = [set([]) for i in range(0, 9)]
-
 def BFS(N, used_cnt):
     idx = used_cnt - 1
     
@@ -26,10 +24,10 @@ def BFS(N, used_cnt):
                 if val_2 != 0:
                     values_by_used_cnt[idx].add(val_1 / val_2)
 
-for i in range(1, 9):
-    BFS(N, i)
-    
-    if number in values_by_used_cnt[i - 1]:
-        print(i)
-        break
-print(-1)
+def solution(N, number):
+    for i in range(1, 9):
+        BFS(N, i)
+        if number in values_by_used_cnt[i - 1]:
+            return i
+        
+    return -1
