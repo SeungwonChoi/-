@@ -1,7 +1,7 @@
 # https://programmers.co.kr/learn/courses/30/lessons/42895
 
 N, number = map(int, input().split())
-values_by_used_cnt = [set([]) * 8]
+values_by_used_cnt = [set([]) for i in range(0, 9)]
 
 def BFS(N, used_cnt):
     idx = used_cnt - 1
@@ -11,25 +11,20 @@ def BFS(N, used_cnt):
     if len(values_by_used_cnt[idx]) != 0:
         return
     elif idx == 0:
-        print(values_by_used_cnt[0])
-        print(values_by_used_cnt[1])
-        print(values_by_used_cnt[2])
         values_by_used_cnt[idx].add(N)
-        print(values_by_used_cnt[0])
-        print(values_by_used_cnt[1])
-        print(values_by_used_cnt[2])
         return
     
     BFS(N, idx)
-    values_by_used_cnt[idx].add(N * 11)
+    values_by_used_cnt[idx].add(N * eval('1' * used_cnt))
     
-    for i in range(0, used_cnt):
+    for i in range(0, idx):
         for val_1 in values_by_used_cnt[i]:
-            for val_2 in values_by_used_cnt[idx - i]:
+            for val_2 in values_by_used_cnt[idx - 1 - i]:
                 values_by_used_cnt[idx].add(val_1 + val_2)
                 values_by_used_cnt[idx].add(val_1 - val_2)
                 values_by_used_cnt[idx].add(val_1 * val_2)
-                values_by_used_cnt[idx].add(val_1 / val_2)
+                if val_2 != 0:
+                    values_by_used_cnt[idx].add(val_1 / val_2)
 
 for i in range(1, 9):
     BFS(N, i)
