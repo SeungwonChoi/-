@@ -8,12 +8,9 @@ def BFS(N, used_cnt):
         return
     if len(values_by_used_cnt[idx]) != 0:
         return
-    elif idx == 0:
-        values_by_used_cnt[idx].add(N)
-        return
     
     BFS(N, idx)
-    values_by_used_cnt[idx].add(N * eval('1' * used_cnt))
+    values_by_used_cnt[idx].add(eval(str(N) * used_cnt)))
     
     for i in range(0, idx):
         for val_1 in values_by_used_cnt[i]:
