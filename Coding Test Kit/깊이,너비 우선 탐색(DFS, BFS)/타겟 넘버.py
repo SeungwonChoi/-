@@ -2,4 +2,6 @@
 
 def solution(numbers, target):
     answer = 0
+    for i in numbers:
+        
     return answer
