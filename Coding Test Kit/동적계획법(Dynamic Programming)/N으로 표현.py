@@ -1,10 +1,10 @@
 # https://programmers.co.kr/learn/courses/30/lessons/42895
 
 values_by_used_cnt = [set([]) for i in range(0, 9)]
-def BFS(N, used_cnt):
+def DP(N, used_cnt):
     idx = used_cnt - 1
     if idx < 0 or idx > 7 or len(values_by_used_cnt[idx]) != 0: return
-    BFS(N, idx)
+    DP(N, idx)
     
     values_by_used_cnt[idx].add(eval(str(N) * used_cnt))
     for i in range(0, int(used_cnt / 2)):
@@ -19,6 +19,6 @@ def BFS(N, used_cnt):
 
 def solution(N, number):
     for i in range(1, 9):
-        BFS(N, i)
+        DP(N, i)
         if number in values_by_used_cnt[i - 1]: return i
     return -1
