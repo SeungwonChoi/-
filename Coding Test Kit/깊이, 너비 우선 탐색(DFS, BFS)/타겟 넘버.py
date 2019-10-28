@@ -2,7 +2,7 @@
 
 def solution(numbers, target):
     length = len(numbers)
-    answer = 0
+    cnt = 0
     
     for i in range(0, pow(2, length)):
         expression = 0
@@ -10,6 +10,6 @@ def solution(numbers, target):
             sign = format(i, '0' + str(length) + 'b')[j]
             expression += numbers[j] * (1 if sign == '0' else -1)            
         if expression == target:
-            answer += 1
+            cnt += 1
         
-    return answer
+    return cnt
