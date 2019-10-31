@@ -5,4 +5,4 @@ import math
 def solution(budgets, M):
     mean = M / len(budgets)
     gap_sum = sum([mean - i for i in budgets if i < mean])
-    return min(math.floor(mean + gap_sum / len([i for i in budgets if i > mean])), max(budgets))
+    return min(math.floor(mean + gap_sum / max([len([i for i in budgets if i > mean]), 1])), max(budgets))
